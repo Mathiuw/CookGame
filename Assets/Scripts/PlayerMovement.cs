@@ -4,13 +4,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    private InputSystem_Actions input;
+    public InputSystem_Actions Input { get; private set; }
 
     [Header("Movement")]
     [SerializeField] float speed = 3f;
     Rigidbody2D rb;
     Vector2 moveVector;
-    Vector2 moveDirection;
 
     [Header("Jump")]
     [SerializeField] float jumpForce = 15f;
@@ -21,22 +20,22 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         // Create input class
-        input = new InputSystem_Actions();
+        Input = new InputSystem_Actions();
 
-        input.Player.Move.performed += OnMovePerformed;
-        input.Player.Move.canceled += OnMoveCanceled;
-        input.Player.Jump.started += OnJumpStarted;
+        Input.Player.Move.performed += OnMovePerformed;
+        Input.Player.Move.canceled += OnMoveCanceled;
+        Input.Player.Jump.started += OnJumpStarted;
 
-        input.Enable();
+        Input.Enable();
     }
 
     private void OnDisable()
     {
-        input.Player.Move.performed -= OnMovePerformed;
-        input.Player.Move.canceled -= OnMoveCanceled;
-        input.Player.Jump.started -= OnJumpStarted;
+        Input.Player.Move.performed -= OnMovePerformed;
+        Input.Player.Move.canceled -= OnMoveCanceled;
+        Input.Player.Jump.started -= OnJumpStarted;
 
-        input.Disable();
+        Input.Disable();
     }
 
     private void Awake()
@@ -61,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
         moveVector = context.ReadValue<Vector2>();
+
+        // scale the player sprite according to the moving direction
+        SpriteScale(moveVector.x);
     }
 
     private void OnMoveCanceled(InputAction.CallbackContext context) 
@@ -79,14 +81,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement() 
     {
-        // Move force
-        //moveDirection = new Vector2(, moveDirection.y);
-
         // Apply movement vector
         rb.linearVelocityX = moveVector.x * speed * Time.fixedDeltaTime;
 
         // Additional gravity
         rb.AddForceY(gravity, ForceMode2D.Impulse);
+    }
+
+    private void SpriteScale(float xForce) 
+    {
+        if (xForce < 0)
+        {
+            transform.localScale = new Vector2(-1,1);
+        }
+        else
+        {
+            transform.localScale = new Vector2(1, 1);
+        }
     }
 
     private void GroundCheck() 
