@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e756046c94751614f8c7551be915a2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeapon: {fileID: 7622348896310260427}
+  weaponPivot: {fileID: 7622348896310260427}
 --- !u!114 &3220279257108474627
 MonoBehaviour:
   m_ObjectHideFlags: 0
