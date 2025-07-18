@@ -322,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1000
   jumpForce: 70
-  gravity: -9.81
+  gravity: -5
   groundMask:
     serializedVersion: 2
     m_Bits: 9
