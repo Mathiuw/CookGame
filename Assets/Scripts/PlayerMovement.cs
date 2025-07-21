@@ -15,7 +15,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 15f;
     [SerializeField] float gravity = -9.81f;
     [SerializeField] LayerMask groundMask;
-    bool grounded = false;
+    public bool Grounded { get; private set; } = false;
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void OnEnable()
     {
@@ -38,15 +45,6 @@ public class PlayerMovement : MonoBehaviour
         Input.Disable();
     }
 
-    private void Awake()
-    {
-        // Lock Cursor
-        Cursor.lockState = CursorLockMode.Locked;
-
-        // Get rigidbody2D component
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     private void Update()
     {
         GroundCheck();
@@ -61,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
     {
         moveVector = context.ReadValue<Vector2>();
 
-        // scale the player sprite according to the moving direction
-        SpriteScale(moveVector.x);
+        // Scale the player according to the moving direction
+        SetSpriteScale(moveVector.x);
     }
 
     private void OnMoveCanceled(InputAction.CallbackContext context) 
@@ -72,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnJumpStarted(InputAction.CallbackContext context)
     {
-        if (grounded)
+        if (Grounded)
         {
             rb.AddForceY(jumpForce, ForceMode2D.Impulse);
             Debug.Log("Jumped");
@@ -88,9 +86,9 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForceY(gravity, ForceMode2D.Impulse);
     }
 
-    private void SpriteScale(float xForce) 
+    private void SetSpriteScale(float xMoveForce) 
     {
-        if (xForce < 0)
+        if (xMoveForce < 0)
         {
             transform.localScale = new Vector2(-1,1);
         }
@@ -104,16 +102,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics2D.Raycast(transform.position, Vector2.down, 1.1f, groundMask))
         {
-            grounded = true;
+            Grounded = true;
         }
         else
         {
-            if (grounded)
+            if (Grounded)
             {
-                grounded = false;
+                Grounded = false;
             }
 
-            grounded = false;
+            Grounded = false;
         }
         Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.green);
     }

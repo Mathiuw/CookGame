@@ -3,22 +3,28 @@ using UnityEngine;
 public class PlayerAnimationManager : MonoBehaviour
 {
     [SerializeField] Transform weaponPivot;
-    Weapon weapon;
+    WeaponPlayer weaponPlayer;
 
     private void Start()
     {
-        weapon = GetComponent<Weapon>();
+        weaponPlayer = GetComponent<WeaponPlayer>();
     }
 
     private void Update()
     {
-        if (weapon.AimUp)
+        switch (weaponPlayer.aimState)
         {
-            weaponPivot.localEulerAngles = new Vector3(0f, 0f, 90);
-        }
-        else
-        {
-            weaponPivot.localEulerAngles = new Vector3(0f, 0f, 0f);
+            case EAimState.Front:
+                weaponPivot.localEulerAngles = new Vector3(0f, 0f, 0f);
+                break;
+            case EAimState.Up:
+                weaponPivot.localEulerAngles = new Vector3(0f, 0f, 90);
+                break;
+            case EAimState.Down:
+                weaponPivot.localEulerAngles = new Vector3(0f, 0f, -90);
+                break;
+            default:
+                break;
         }
     }
 }

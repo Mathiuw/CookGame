@@ -218,9 +218,11 @@ GameObject:
   - component: {fileID: 6009550221765472426}
   - component: {fileID: 7084758081924025959}
   - component: {fileID: 4187386553943000107}
+  - component: {fileID: 2940483441557026971}
   - component: {fileID: 7442821697692964766}
+  - component: {fileID: 5579994469414700349}
   - component: {fileID: 2873910949188420163}
-  - component: {fileID: 3220279257108474627}
+  - component: {fileID: 2443689339749301596}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -308,6 +310,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &2940483441557026971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535870075195494338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea9aa369d6ffba4bb5d04c10aaae66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 1
 --- !u!114 &7442821697692964766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,11 +336,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1000
-  jumpForce: 70
-  gravity: -5
+  jumpForce: 30
+  gravity: -1.5
   groundMask:
     serializedVersion: 2
     m_Bits: 9
+--- !u!114 &5579994469414700349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535870075195494338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda3ba8a2d778ac43ad9df312ff9f1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3099305346029781468, guid: 1d36d083bf89ce54097beac93166f6a1, type: 3}
+  <BaseBulletSpeed>k__BackingField: 3000
 --- !u!114 &2873910949188420163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPivot: {fileID: 7622348896310260427}
---- !u!114 &3220279257108474627
+--- !u!114 &2443689339749301596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,8 +377,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5535870075195494338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aed9c0f4ffd5714c8d59f065edd87c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7647cc5fa38259944be21dbe6d626db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3099305346029781468, guid: 1d36d083bf89ce54097beac93166f6a1, type: 3}
-  bulletSpeed: 40

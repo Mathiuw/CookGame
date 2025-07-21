@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083765610909079559}
   - component: {fileID: 7130388487374154466}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Spr_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 9108402858248145810}
   - component: {fileID: 6852731390288333487}
   - component: {fileID: 3099305346029781468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,5 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6fd139431cf3404a94475e068a64a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 10
+  <Speed>k__BackingField: 3000
+  <Damage>k__BackingField: 30
   timeToDestroy: 5
