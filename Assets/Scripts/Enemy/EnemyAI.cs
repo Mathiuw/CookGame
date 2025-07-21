@@ -40,6 +40,8 @@ public class EnemyAI : MonoBehaviour
             Vector2 direction = (playerPosition - (Vector2)transform.position).normalized;
             // Move apenas no eixo X, mantendo a velocidade Y (gravidade)
             rb.linearVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y);
+
+            SetSpriteScale(rb.linearVelocity.normalized.x);
         }
         else
         {
@@ -47,7 +49,7 @@ public class EnemyAI : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
 
-        SetSpriteScale(rb.linearVelocityX);
+
     }
 
     private void ShootTarget() 

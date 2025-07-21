@@ -88,13 +88,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetSpriteScale(float xMoveForce) 
     {
-        if (xMoveForce < 0)
+        if (xMoveForce != 0)
         {
-            transform.localScale = new Vector2(-1,1);
-        }
-        else
-        {
-            transform.localScale = new Vector2(1, 1);
+            transform.localScale = new Vector2(xMoveForce, 1);
         }
     }
 
